@@ -26,11 +26,28 @@
     mapboxgl.accessToken = 'pk.eyJ1Ijoianh4IiwiYSI6IjUxNWVmNGYzZGRmOTU1ZjEwY2JkMzVlNTg1MGI5OWY5In0.JoebSQedSPap-0FYAQ00wg'; // replace this with your access token
     var map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/jxx/ckjez33i3897t1alue5w54wiw', // replace this with your style URL
+      style: 'mapbox://styles/jxx/ckjez33i3897t1alue5w54wiw', // style
       center: [-73.8589, 40.7079],
       zoom: 10.5
     });
-    // code from the next step will go here
+
+    map.on('click', function(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['gridplaces'] // layer
+  });
+
+  if (!features.length) {
+    return;
+  }
+
+  var feature = features[0];
+
+  var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+    .addTo(map);
+});
+
     </script>
 
   <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
