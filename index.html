@@ -7,18 +7,30 @@
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
     <style>
+
+      @font-face {
+      font-family: "Hanken Grotesk Black";
+      src: url("fonts/HankenGrotesk-Black.ttf");
+      }
+      
       body {
         margin: 90;
         padding: 40;
-        font-family: 'Lato', sans-serif;
+        font-family: 'Hanken Grotesk Black', sans-serif;
         font-size: 24px;
         background: #373738;
       }
 
       h1 {
-        font-family: 'Lato', sans-serif;
+        font-family: 'Hanken Grotesk Black', sans-serif;
+        font-size: 64px;
+        color: #dafbf0;
+      }
+
+      h2 {
+        font-family: 'Hanken Grotesk Black', sans-serif;
         font-size: 48px;
-        color: blue;
+        color: #dafbf0;
       }
 
       #map {
@@ -31,12 +43,10 @@
   </head>
   <body>
   
-  <br>
-  <br>
-  <br>
-  <br>
-
   <h1>GRID</h1>
+  <br>
+  <h2>Hi! This is test text.</h2>
+  
 
   <div id='map' style='width: 1200px; height: 900px;'></div>
   <script>
