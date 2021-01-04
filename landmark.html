@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <title>Landmark Creation Service</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+
+      @font-face {
+      font-family: "Hanken Grotesk Black";
+      src: url("fonts/HankenGrotesk-Black.ttf");
+      }
+      
+      body {
+        margin: 90;
+        padding: 40;
+        font-family: 'Hanken Grotesk Black', sans-serif;
+        font-size: 24px;
+        background: #373738;
+      }
+
+      h1 {
+        font-family: 'Hanken Grotesk Black', sans-serif;
+        font-size: 64px;
+        color: #dafbf0;
+      }
+
+      h2 {
+        font-family: 'Hanken Grotesk Black', sans-serif;
+        font-size: 48px;
+        color: #dafbf0;
+      }
+
+      #map {
+        position: absolute;
+        top: 25;
+        bottom: 90;
+        width: 100%;
+      }
+    </style>
+</head>
+
+<body>
+
+<br>
+<h2>Hi! This is test text.</h2>
+
+<script>
+const firebase = require("firebase");
+// Required for side-effects
+require("firebase/firestore");
+</script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyB-EV5oA91lN2z1XwPtivJhCEoFjsxm8uU",
+    authDomain: "grid-b88fc.firebaseapp.com",
+    projectId: "grid-b88fc",
+    storageBucket: "grid-b88fc.appspot.com",
+    messagingSenderId: "796517845387",
+    appId: "1:796517845387:web:a0bb6781e034472b79478e",
+    measurementId: "G-J1JTBBZ9EJ"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  var db = firebase.firestore();
+
+</script>
+
+  <!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
+
+
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="/__/firebase/8.2.1/firebase-auth.js"></script>
+  <script src="/__/firebase/8.2.1/firebase-firestore.js"></script>
+
+</body>
+</html>
