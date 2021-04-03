@@ -13,7 +13,7 @@ function renderplace(doc){
     description.textContent = doc.data().description;
     destination.textContent = doc.data().destination;
     location.textContent = doc.data().location;
-    cross.textContent = 'x';
+    cross.textContent = 'Delete Entry';
 
     li.appendChild(description);
     li.appendChild(destination);
