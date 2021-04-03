@@ -40,7 +40,7 @@ form.addEventListener('submit', (e) => {
         destination: form.destination.value,
         description: form.description.value,
         location: form.location.value,
-        link: form.link.value
+        link: form.link.value,
     });
     form.destination.value = '';
     form.description.value = '';
