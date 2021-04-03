@@ -1,55 +1,59 @@
-// LOGIC TO WRITE DATA
-var db = firebase.firestore();
+const placeslist = document.querySelector('#placeslist');
+const form = document.querySelector('#add-place-form');
 
-function storeData(){
-
-var destinationText = document.getElementById("destination_field").value; 
-var locationText = document.getElementById("location_field").value; 
-var descriptionText = document.getElementById("description_field").value; 
-
-db.collection("Places").doc().set({
-    destination: destinationText,
-    location: locationText,
-    description: descriptionText,
-
-})
-.then(function() { 
-    console.log("Document successfully written!");
-})
-.catch(function(error) {
-    console.error("Error writing document: ", error);
-});
-
-}
-
-// for list of places
-const placesList = document.querySelector('#places-list');
-
-// create element and render places
-function renderPlaces(doc){
-    let li = document.createElement('li'); 
+// create element and render place
+function renderplace(doc){
+    let li = document.createElement('li');
+    let description = document.createElement('span');
     let destination = document.createElement('span');
-    let location = document.createElement('span'); 
-    let description = document.createElement('span'); 
+    let location = document.createElement('span');
+    let cross = document.createElement('div');
 
-    li.setAttribute('data-id', doc.id);
+    li.setAttribute('data-id', doc.id)
+    description.textContent = doc.data().description;
     destination.textContent = doc.data().destination;
     location.textContent = doc.data().location;
-    description.textContent = doc.data().description;
+    cross.textContent = 'x';
 
+    li.appendChild(description);
     li.appendChild(destination);
     li.appendChild(location);
-    li.appendChild(description); 
+    li.appendChild(cross);
 
-    placesList.appendChild(li);
+    placeslist.appendChild(li);
 
+    // deleting data
+    cross.addEventListener('click', (e) => {
+        e.stopPropagation();
+        let id = e.target.parentElement.getAttribute('data-id');
+        db.collection('places').doc(id).delete();
+    })
 }
 
-// LOGIC FOR READING DATA TO SHOW IN BULLETS ON LANDMARK.HTML
-// db.collection("places").get().then((snapshot) => {
+// saving data
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    db.collection('places').add({
+        description: form.description.value,
+        destination: form.destination.value,
+        location: form.location.value
+    });
+    form.description.value = '';
+    form.destination.value = '';
+    form.location.value = '';
 
-//     snapshot.docs.forEach(doc => {
-//         renderPlaces(doc);
-        
-//     }) 
-// })
+});
+
+// real time listener
+db.collection('places').orderBy('destination').onSnapshot(snapshot => {
+    let changes = snapshot.docChanges();
+    changes.forEach(change => {
+        if(change.type == 'added'){
+            renderplace(change.doc)
+        } else if (change.type == 'removed'){
+            let li = placeslist.querySelector('[data-id=' + change.doc.id + ']')
+            placeslist.removeChild(li);
+        }
+    })
+    
+})
