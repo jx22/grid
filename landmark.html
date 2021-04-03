@@ -138,6 +138,11 @@
           document.getElementById('description').style.borderColor = "red";
         }
 
+        if (document.getElementById('link').value == "") {
+          errormessage += "Please enter a link. \n";
+          document.getElementById('link').style.borderColor = "red";
+        }
+
         if (errormessage != "") {
           alert(errormessage);
           return false;
@@ -161,6 +166,8 @@
 <input type="text" placeholder="Where is it?" id="location" name="location">
 <br>
 <input type="text" placeholder="Describe the place." id="description" name="description">
+<br>
+<input type="text" placeholder="Please provide a web link." id="description" name="description">
 
 <br>
 <button id="submit_button" onclick="return checkforblank()" onclick="storeData()">Submit</button>
