@@ -7,7 +7,7 @@ function renderplace(doc){
     let description = document.createElement('span');
     let destination = document.createElement('span');
     let location = document.createElement('span');
-    let cross = document.createElement('span');
+    let cross = document.createElement('div');
 
     li.setAttribute('data-id', doc.id)
     description.textContent = doc.data().description;
